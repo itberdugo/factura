@@ -1,0 +1,36 @@
+<div class="container my-4 card">
+    <div class="card-header">
+      <h2>Ejemplo de factura</h2>
+    </div>
+  <div class="card-body">
+
+    <envoices-view [id]="printInvoice.id" [name]="printInvoice.name"></envoices-view>
+      <div class="row my-3">
+        <div class="col">
+            <client-view
+            [name]="printInvoice.client.name"
+            [lastName]="printInvoice.client.lastName"
+            [phone]="printInvoice.client.phone"
+            [country]="printInvoice.client.address.country"
+            [city]="printInvoice.client.address.city"
+            [street]="printInvoice.client.address.street"
+            [number]="printInvoice.client.address.number"
+            ></client-view>
+        </div>
+        <div class="col">
+          <company-view [company]="printInvoice.company"></company-view>
+        </div>
+      </div>
+        <div>
+          <list-items
+          [item]="printInvoice.items" (removeEventEmitter)="bntRemovePadre($event)"
+          ></list-items>
+        </div>
+        <div class="card">
+          <total-invoice [total]="total"></total-invoice>
+        </div>
+        <div>
+          <form-item (addEventEmitter)="addItemPadre($event)"></form-item>
+        </div>
+  </div>
+</div>
